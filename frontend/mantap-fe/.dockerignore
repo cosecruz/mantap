@@ -1,0 +1,27 @@
+node_modules/
+
+# # Local environment files (if you don't want them in the container)
+# .env
+# .env.local
+# .env.development
+# .env.production
+# .env.test
+
+# Build and cache files
+# dist/
+build/
+.cache/
+.vite/
+.next/
+out/
+coverage/
+
+# Docker & System Files
+.DS_Store
+.git/
+.gitignore
+.npmrc
+yarn.lock
+pnpm-debug.log
+npm-debug.log
+docker-compose.override.yml
