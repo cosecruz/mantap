@@ -48,7 +48,7 @@ jobs:
 
       - name: Build & Test
         run: |
-          pnpm run build --if-present
+          pnpm run build
           pnpm test
         working-directory: frontend
 
@@ -86,6 +86,6 @@ jobs:
 
       - name: Build & Test
         run: |
-          pnpm run build --if-present
+          pnpm run build
           pnpm test
         working-directory: backend
