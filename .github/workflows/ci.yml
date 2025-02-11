@@ -1,32 +1,25 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches:
-    - dev
-    - uat
-    - main
-    - "feature/**"
-    - release/*
-    - mtp*
+      - dev
+      - uat
+      - main
+      - "feature/**"
+      - release/*
+      - mtp*
   pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: ["main"]
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
     name: Test on Node.js ${{ matrix.node_version }} and OS ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: ['18.x', '20.x', '22.x', '23.x']
+        node_version: ["18.x", "20.x", "22.x", "23.x"]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -37,10 +30,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node_version }}
-          cache: 'pnpm'
 
       - name: Install pnpm
         run: npm install -g pnpm
+
+      - name: Cache pnpm store
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
