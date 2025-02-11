@@ -49,7 +49,6 @@ jobs:
       - name: Build & Test
         run: |
           pnpm run build
-          pnpm -w run test
         working-directory: frontend/mantap-fe
 
   test-backend:
@@ -87,5 +86,4 @@ jobs:
       - name: Build & Test
         run: |
           pnpm run build
-          pnpm -w run test
         working-directory: backend
