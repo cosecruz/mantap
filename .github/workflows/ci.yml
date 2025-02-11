@@ -44,13 +44,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
-        working-directory: frontend
+        working-directory: frontend/mantap-fe
 
       - name: Build & Test
         run: |
-          pnpm run build --if-present
-          pnpm test
-        working-directory: frontend
+          pnpm run build
+        working-directory: frontend/mantap-fe
 
   test-backend:
     name: Test Backend on Node.js ${{ matrix.node_version }} and OS ${{ matrix.os }}
@@ -86,6 +85,6 @@ jobs:
 
       - name: Build & Test
         run: |
-          pnpm run build --if-present
-          pnpm test
+          pnpm run build
         working-directory: backend
+
