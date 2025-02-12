@@ -19,7 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: ["18.x", "20.x", "22.x", "23.x"]
+        node_version: ["23.x"]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -56,7 +56,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: ["18.x", "20.x", "22.x", "23.x"]
+        node_version: ["23.x"]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
