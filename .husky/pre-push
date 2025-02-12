@@ -1,0 +1,16 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+if ! echo "$BRANCH_NAME" | grep -E '^(dev|uat|main|feature\/.+|release\/.+|mtp.+)$'; then
+  echo "Invalid branch name: $BRANCH_NAME"
+  echo "Branch names must match one of the following patterns:"
+  echo "  - dev"
+  echo "  - uat"
+  echo "  - main"
+  echo "  - feature/**"
+  echo "  - release/*"
+  echo "  - mtp*"
+  exit 1
+fi
+sh .husky/pre-push
